@@ -7,7 +7,7 @@
     <label>Pulsar Gateway</label>
     <description></description>
     <version>${pom.version}</version>
-    <image>https://raw.github.com/jbvanzuylen/cf-pulsar-gateway/master/lucee4/pulsar.png</image>
+    <image>https://raw.github.com/jbvanzuylen/cf-pulsar-gateway/master/logo.png</image>
     <author>Jean-Bernard van Zuylen</author>
     <support>https://github.com/jbvanzuylen/cf-pulsar-gateway/issues</support>
     <created>${ext.release.date}</created>
