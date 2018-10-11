@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <info>
+    <type>web</type>
+    <id>B4E09748-8024-4993-B4CEA3BAE5E38A23</id>
+    <name>pulsar-gateway</name>
+    <label>Pulsar Gateway</label>
+    <description></description>
+    <version>${pom.version}</version>
+    <image>https://raw.github.com/jbvanzuylen/cf-pulsar-gateway/master/lucee4/pulsar.png</image>
+    <author>Jean-Bernard van Zuylen</author>
+    <support>https://github.com/jbvanzuylen/cf-pulsar-gateway/issues</support>
+    <created>${ext.release.date}</created>
+  </info>
+</config>
