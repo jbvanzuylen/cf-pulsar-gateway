@@ -70,7 +70,7 @@ public class PulsarConsumer extends PulsarExchanger implements MessageListener<b
   
   
   /**
-   * Stops this listener
+   * Stops this consumer
    * 
    * @throws Exception if case of an error when stopping
    */

@@ -65,7 +65,7 @@ public class PulsarProducer extends PulsarExchanger
   }
 
   /**
-   * Stops this sender
+   * Stops this producer
    * 
    * @throws Exception in case of an error when stopping
    */
@@ -78,7 +78,7 @@ public class PulsarProducer extends PulsarExchanger
   }
 
   /**
-   * Posts a message to the JMS provider with the specified data
+   * Posts a message to Pulsar with the specified data
    * 
    * @param data the data of the message to be posted
    * 
