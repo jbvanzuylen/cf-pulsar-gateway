@@ -1,8 +1,11 @@
 package org.primeoservices.cfgateway.pulsar;
 
+import java.util.Map;
+
 import org.apache.pulsar.client.api.Consumer;
 import org.apache.pulsar.client.api.Producer;
 import org.apache.pulsar.client.api.PulsarClient;
+import org.apache.pulsar.client.api.TypedMessageBuilder;
 
 public class PulsarUtils
 {
@@ -64,6 +67,21 @@ public class PulsarUtils
     catch (Throwable t)
     {
       // ignore
+    }
+  }
+
+  /**
+   * Sets the properties in the message builder
+   * 
+   * @param builder the message builder to set the properties to
+   * @param properties the properties to be set
+   */
+  public static void setProperties(final TypedMessageBuilder<byte[]> builder, final Map<?, ?> properties)
+  {
+    if (properties == null || properties.isEmpty()) return;
+    for (Map.Entry<?, ?> entry : properties.entrySet())
+    {
+      builder.property((String) entry.getKey(), (String) entry.getValue());
     }
   }
 }

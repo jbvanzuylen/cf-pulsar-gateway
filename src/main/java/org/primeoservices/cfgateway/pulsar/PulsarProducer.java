@@ -26,6 +26,8 @@ public class PulsarProducer extends PulsarExchanger
 {
   private static final String MESSAGE_KEY = "message";
 
+  private static final String PROPERTIES_KEY = "properties";
+
   private Producer<byte[]> producer;
 
   /**
@@ -84,11 +86,13 @@ public class PulsarProducer extends PulsarExchanger
    * 
    * @throws Exception in case of an error when sending a message
    */
-  public void postMessage(final Map<String, Object> data) throws Exception
+  public void postMessage(final Map<?, ?> data) throws Exception
   {
     final Object message = data.get(MESSAGE_KEY);
     if (message == null) throw new PulsarClientException("Missing message");
     final TypedMessageBuilder<byte[]> builder = this.producer.newMessage();
+    final Object properties = data.get(PROPERTIES_KEY);
+    PulsarUtils.setProperties(builder, (Map<?, ?>) properties);
     builder.value(((String) message).getBytes());
     builder.send();
   }

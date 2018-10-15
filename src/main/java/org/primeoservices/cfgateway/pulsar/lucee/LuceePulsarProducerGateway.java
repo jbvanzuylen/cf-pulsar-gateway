@@ -49,8 +49,7 @@ public class LuceePulsarProducerGateway extends AbstractLuceePulsarGateway imple
   }
 
   @Override
-  @SuppressWarnings({"rawtypes", "unchecked"})
-  public String sendMessage(final Map data) throws IOException
+  public String sendMessage(final Map<?, ?> data) throws IOException
   {
     try
     {
