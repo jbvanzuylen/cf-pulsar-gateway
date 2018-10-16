@@ -21,6 +21,8 @@ public interface PulsarConfiguration
 {
   public static final SubscriptionType DEFAULT_SUBSCRIPTION_TYPE = SubscriptionType.Exclusive;
 
+  public static final int DEFAULT_ACK_TIMEOUT = 0;
+
   public String getHost();
 
   public int getPort();
@@ -30,4 +32,6 @@ public interface PulsarConfiguration
   public String getSubscriptionName();
 
   public SubscriptionType getSubscriptionType();
+
+  public int getAckTimeout();
 }

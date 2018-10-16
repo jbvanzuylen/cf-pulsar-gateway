@@ -17,6 +17,7 @@ package org.primeoservices.cfgateway.pulsar;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.pulsar.client.api.Consumer;
 import org.apache.pulsar.client.api.ConsumerBuilder;
@@ -65,6 +66,7 @@ public class PulsarConsumer extends PulsarExchanger implements MessageListener<b
     builder.consumerName(this.getGateway().getId());
     builder.subscriptionName(config.getSubscriptionName());
     builder.subscriptionType(config.getSubscriptionType());
+    builder.ackTimeout(config.getAckTimeout(), TimeUnit.SECONDS);
     builder.messageListener(this);
   }
   

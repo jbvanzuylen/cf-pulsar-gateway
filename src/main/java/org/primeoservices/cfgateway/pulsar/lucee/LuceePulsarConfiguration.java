@@ -32,6 +32,8 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
 
   private static final String SUBSCRIPTION_NAME_KEY = "subscriptionName";
 
+  private static final String ACK_TIMEOUT_KEY = "ackTimeout";
+
   private Map<String, String> config;
 
   public LuceePulsarConfiguration(final Map<String, String> config)
@@ -67,5 +69,11 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
   public SubscriptionType getSubscriptionType()
   {
     return SubscriptionType.valueOf(this.config.get(SUBSCRIPTION_TYPE_KEY));
+  }
+
+  @Override
+  public int getAckTimeout()
+  {
+    return Integer.valueOf(this.config.get(ACK_TIMEOUT_KEY));
   }
 }

@@ -8,7 +8,8 @@
     group("Consumer Options", "Consumer Options", 3),
     field("Topic", "topic", "", true, "Specify the topic this consumer will subscribe on", "text"),
     field("Subscription Name", "subscriptionName", "", true, "Specify the subscription name for this consumer", "text"),
-    field("Subscription Type", "subscriptionType", toString(config.DEFAULT_SUBSCRIPTION_TYPE), true, "Select the subscription type to be used when subscribing to the topic", "radio", "Exclusive,Shared,Failover")
+    field("Subscription Type", "subscriptionType", toString(config.DEFAULT_SUBSCRIPTION_TYPE), true, "Select the subscription type to be used when subscribing to the topic", "radio", "Exclusive,Shared,Failover"),
+    field("Acknowledge Timeout", "ackTimeout", toString(config.DEFAULT_ACK_TIMEOUT), true, "Set the timeout for unacked messages (in seconds)", "text")
   ) />
 
   <cffunction name="getClass" access="public" returntype="string" output="false">
