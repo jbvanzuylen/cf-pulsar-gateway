@@ -67,6 +67,7 @@ public class PulsarConsumer extends PulsarExchanger implements MessageListener<b
     builder.subscriptionName(config.getSubscriptionName());
     builder.subscriptionType(config.getSubscriptionType());
     builder.ackTimeout(config.getAckTimeout(), TimeUnit.SECONDS);
+    builder.receiverQueueSize(config.getReceiverQueueSize());
     builder.messageListener(this);
   }
   

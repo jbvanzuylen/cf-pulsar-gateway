@@ -34,6 +34,8 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
 
   private static final String ACK_TIMEOUT_KEY = "ackTimeout";
 
+  private static final String RECEIVER_QUEUE_SIZE_KEY = "receiverQueueSize";
+
   private Map<String, String> config;
 
   public LuceePulsarConfiguration(final Map<String, String> config)
@@ -75,5 +77,11 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
   public int getAckTimeout()
   {
     return Integer.valueOf(this.config.get(ACK_TIMEOUT_KEY));
+  }
+
+  @Override
+  public int getReceiverQueueSize()
+  {
+    return Integer.valueOf(this.config.get(RECEIVER_QUEUE_SIZE_KEY));
   }
 }

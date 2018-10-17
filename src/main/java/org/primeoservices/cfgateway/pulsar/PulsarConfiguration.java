@@ -23,6 +23,8 @@ public interface PulsarConfiguration
 
   public static final int DEFAULT_ACK_TIMEOUT = 0;
 
+  public static final int DEFAULT_RECEIVER_QUEUE_SIZE = 1000;
+
   public String getHost();
 
   public int getPort();
@@ -34,4 +36,6 @@ public interface PulsarConfiguration
   public SubscriptionType getSubscriptionType();
 
   public int getAckTimeout();
+
+  public int getReceiverQueueSize();
 }
