@@ -31,6 +31,10 @@ public interface PulsarConfiguration
 
   public int getPort();
 
+  public boolean isTlsEnabled();
+
+  public String geTlsTrustCertsFilePath();
+
   public String getTopic();
 
   public int getSendTimeout();

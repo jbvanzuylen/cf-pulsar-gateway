@@ -15,6 +15,8 @@ public class PulsarConnection
 {
   private static final String URI_SCHEME = "pulsar";
 
+  private static final String URI_SCHEME_TLS = "pulsar+ssl";
+
   private static Map<String, PulsarConnection> INSTANCES = new HashMap<String, PulsarConnection>();
 
   private ClientBuilder builder;
@@ -27,6 +29,7 @@ public class PulsarConnection
   {
     this.builder = PulsarClient.builder();
     this.builder.serviceUrl(buildServiceUrl(config));
+    this.builder.tlsTrustCertsFilePath(config.geTlsTrustCertsFilePath());
   }
 
   public synchronized Producer<byte[]> newProducer(final PulsarProducer producer) throws PulsarClientException
@@ -83,7 +86,7 @@ public class PulsarConnection
 
   public static String buildServiceUrl(final PulsarConfiguration config)
   {
-    return URI_SCHEME + "://" + config.getHost() + ":" + config.getPort();
+    return (config.isTlsEnabled() ? URI_SCHEME_TLS : URI_SCHEME) + "://" + config.getHost() + ":" + config.getPort();
   }
 
   public static PulsarConnection getConnection(final PulsarConfiguration config) throws PulsarClientException

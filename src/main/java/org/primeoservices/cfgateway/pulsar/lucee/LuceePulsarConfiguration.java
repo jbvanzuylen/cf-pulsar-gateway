@@ -18,6 +18,7 @@ package org.primeoservices.cfgateway.pulsar.lucee;
 import java.util.Map;
 
 import org.apache.pulsar.client.api.SubscriptionType;
+import org.apache.pulsar.shade.org.apache.commons.lang3.StringUtils;
 import org.primeoservices.cfgateway.pulsar.PulsarConfiguration;
 
 public class LuceePulsarConfiguration implements PulsarConfiguration
@@ -25,6 +26,10 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
   private static final String HOST_KEY = "host";
 
   private static final String PORT_KEY = "port";
+
+  private static final String TLS_ENABLED_KEY = "enableTls";
+
+  private static final String TLS_TRUST_CERTS_FILE_PATH_KEY = "tlsTrustCertsFilePath";
 
   private static final String TOPIC_KEY = "topic";
 
@@ -55,6 +60,18 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
   public int getPort()
   {
     return Integer.valueOf(this.config.get(PORT_KEY));
+  }
+
+  @Override
+  public boolean isTlsEnabled()
+  {
+    return Boolean.valueOf(this.config.get(TLS_ENABLED_KEY));
+  }
+
+  @Override
+  public String geTlsTrustCertsFilePath()
+  {
+    return this.optString(TLS_TRUST_CERTS_FILE_PATH_KEY);
   }
 
   @Override
@@ -91,5 +108,12 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
   public int getReceiverQueueSize()
   {
     return Integer.valueOf(this.config.get(RECEIVER_QUEUE_SIZE_KEY));
+  }
+
+  private String optString(final String key)
+  {
+    final String value = this.config.get(key);
+    if (StringUtils.isBlank(value)) return null;
+    return value;
   }
 }
