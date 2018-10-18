@@ -28,6 +28,8 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
 
   private static final String TOPIC_KEY = "topic";
 
+  private static final String SEND_TIMEOUT_KEY = "sendTimeout";
+
   private static final String SUBSCRIPTION_TYPE_KEY = "subscriptionType";
 
   private static final String SUBSCRIPTION_NAME_KEY = "subscriptionName";
@@ -59,6 +61,12 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
   public String getTopic()
   {
     return this.config.get(TOPIC_KEY);
+  }
+
+  @Override
+  public int getSendTimeout()
+  {
+    return Integer.valueOf(this.config.get(SEND_TIMEOUT_KEY));
   }
 
   @Override

@@ -16,6 +16,7 @@
 package org.primeoservices.cfgateway.pulsar;
 
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 import org.apache.pulsar.client.api.Producer;
 import org.apache.pulsar.client.api.ProducerBuilder;
@@ -63,6 +64,7 @@ public class PulsarProducer extends PulsarExchanger
     final PulsarConfiguration config = this.getGateway().getConfiguration();
     builder.topic(config.getTopic());
     builder.producerName(this.getGateway().getId());
+    builder.sendTimeout(config.getSendTimeout(), TimeUnit.SECONDS);
     builder.enableBatching(false);
   }
 

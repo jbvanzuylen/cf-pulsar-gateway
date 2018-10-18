@@ -21,6 +21,8 @@ public interface PulsarConfiguration
 {
   public static final SubscriptionType DEFAULT_SUBSCRIPTION_TYPE = SubscriptionType.Exclusive;
 
+  public static final int DEFAULT_SEND_TIMEOUT = 30;
+
   public static final int DEFAULT_ACK_TIMEOUT = 0;
 
   public static final int DEFAULT_RECEIVER_QUEUE_SIZE = 1000;
@@ -30,6 +32,8 @@ public interface PulsarConfiguration
   public int getPort();
 
   public String getTopic();
+
+  public int getSendTimeout();
 
   public String getSubscriptionName();
 

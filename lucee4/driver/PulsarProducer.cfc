@@ -6,7 +6,8 @@
     field("Host", "host", "", true, "Set the host name of the Pulsar service", "text"),
     field("Port", "port", "6650", true, "Set the port to connect to the Pulsar service", "text"),
     group("Producer Options", "Producer Options", 3),
-    field("Topic", "topic", "", true, "Specify the topic this producer will be publishing on", "text")
+    field("Topic", "topic", "", true, "Specify the topic this producer will be publishing on", "text"),
+    field("Send Timeout", "sendTimeout", toString(config.DEFAULT_SEND_TIMEOUT), true, "Set the send timeout (in seconds)", "text")
   ) />
 
   <cffunction name="getClass" access="public" returntype="string" output="false">
