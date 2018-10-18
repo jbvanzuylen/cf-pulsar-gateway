@@ -30,6 +30,7 @@ public class PulsarConnection
     this.builder = PulsarClient.builder();
     this.builder.serviceUrl(buildServiceUrl(config));
     this.builder.tlsTrustCertsFilePath(config.geTlsTrustCertsFilePath());
+    this.builder.authentication(config.getAuthentication());
   }
 
   public synchronized Producer<byte[]> newProducer(final PulsarProducer producer) throws PulsarClientException

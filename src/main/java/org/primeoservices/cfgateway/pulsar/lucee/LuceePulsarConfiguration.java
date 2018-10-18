@@ -16,8 +16,13 @@
 package org.primeoservices.cfgateway.pulsar.lucee;
 
 import java.util.Map;
+import java.util.TreeMap;
 
+import org.apache.pulsar.client.api.Authentication;
+import org.apache.pulsar.client.api.AuthenticationFactory;
+import org.apache.pulsar.client.api.PulsarClientException.UnsupportedAuthenticationException;
 import org.apache.pulsar.client.api.SubscriptionType;
+import org.apache.pulsar.client.impl.auth.AuthenticationDisabled;
 import org.apache.pulsar.shade.org.apache.commons.lang3.StringUtils;
 import org.primeoservices.cfgateway.pulsar.PulsarConfiguration;
 
@@ -30,6 +35,12 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
   private static final String TLS_ENABLED_KEY = "enableTls";
 
   private static final String TLS_TRUST_CERTS_FILE_PATH_KEY = "tlsTrustCertsFilePath";
+
+  private static final String AUTHENTICATION_TLS_KEY = "authenticationTls";
+
+  private static final String AUTHENTICATION_TLS_CERT_FILE_KEY = "authenticationTlsCertFile";
+
+  private static final String AUTHENTICATION_TLS_KEY_FILE_KEY = "authenticationTlsKeyFile";
 
   private static final String TOPIC_KEY = "topic";
 
@@ -65,13 +76,26 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
   @Override
   public boolean isTlsEnabled()
   {
-    return Boolean.valueOf(this.config.get(TLS_ENABLED_KEY));
+    return this.getBoolean(TLS_ENABLED_KEY);
   }
 
   @Override
   public String geTlsTrustCertsFilePath()
   {
     return this.optString(TLS_TRUST_CERTS_FILE_PATH_KEY);
+  }
+
+  @Override
+  public Authentication getAuthentication() throws UnsupportedAuthenticationException
+  {
+    if (this.getBoolean(AUTHENTICATION_TLS_KEY))
+    {
+      final Map<String, String> params = new TreeMap<>();
+      params.put("tlsCertFile", this.config.get(AUTHENTICATION_TLS_CERT_FILE_KEY));
+      params.put("tlsKeyFile", this.config.get(AUTHENTICATION_TLS_KEY_FILE_KEY));
+      return AuthenticationFactory.create(AUTHENTICATION_TLS_CLASS, params);
+    }
+    return new AuthenticationDisabled();
   }
 
   @Override
@@ -108,6 +132,11 @@ public class LuceePulsarConfiguration implements PulsarConfiguration
   public int getReceiverQueueSize()
   {
     return Integer.valueOf(this.config.get(RECEIVER_QUEUE_SIZE_KEY));
+  }
+
+  private boolean getBoolean(final String key)
+  {
+    return Boolean.valueOf(this.config.get(key));
   }
 
   private String optString(final String key)

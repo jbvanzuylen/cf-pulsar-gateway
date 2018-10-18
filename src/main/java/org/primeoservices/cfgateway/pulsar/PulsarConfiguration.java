@@ -15,10 +15,14 @@
  */
 package org.primeoservices.cfgateway.pulsar;
 
+import org.apache.pulsar.client.api.Authentication;
+import org.apache.pulsar.client.api.PulsarClientException.UnsupportedAuthenticationException;
 import org.apache.pulsar.client.api.SubscriptionType;
 
 public interface PulsarConfiguration
 {
+  public static final String AUTHENTICATION_TLS_CLASS = "org.apache.pulsar.client.impl.auth.AuthenticationTls";
+
   public static final SubscriptionType DEFAULT_SUBSCRIPTION_TYPE = SubscriptionType.Exclusive;
 
   public static final int DEFAULT_SEND_TIMEOUT = 30;
@@ -34,6 +38,8 @@ public interface PulsarConfiguration
   public boolean isTlsEnabled();
 
   public String geTlsTrustCertsFilePath();
+
+  public Authentication getAuthentication() throws UnsupportedAuthenticationException;
 
   public String getTopic();
 

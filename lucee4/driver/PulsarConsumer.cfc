@@ -7,6 +7,10 @@
     field("Port", "port", "6650", true, "Set the port to connect to the Pulsar service", "text"),
     field("TLS", "enableTls", "false", false, "Enable TLS encryption on the connection", "checkbox", "true"),
     field("TLS Trusted Certificates File", "tlsTrustCertsFilePath", "", false, "Set the path to the trusted TLS certificates file", "text"),
+    group("Authentication", "Authentication", 3),
+    field("TLS Authentication", "authenticationTls", "false", false, "Enabling TLS Authentication", "checkbox", "true"),
+    field("Client Certificate", "authenticationTlsCertFile", "", false, "Set the path to the client certificate file for TLS authentication", "text"),
+    field("Client Private Key", "authenticationTlsKeyFile", "", false, "Set the path to the client private key file for TLS authentication", "text"),
     group("Consumer Options", "Consumer Options", 3),
     field("Topic", "topic", "", true, "Specify the topic this consumer will subscribe on", "text"),
     field("Subscription Name", "subscriptionName", "", true, "Specify the subscription name for this consumer", "text"),
@@ -40,6 +44,26 @@
     <cfif (len(arguments.custom.tlsTrustCertsFilePath) gt 0)
             AND (NOT fileExists(arguments.custom.tlsTrustCertsFilePath))>
       <cfthrow message="Cannot find TLS certificate file (#arguments.custom.tlsTrustCertsFilePath#)" />
+    </cfif>
+
+    <!--- Check file path to client certificate if TLS authentication --->
+    <cfif structKeyExists(arguments.custom, "authenticationTls")
+            AND (len(trim(arguments.custom.authenticationTlsCertFile)) eq 0)>
+      <cfthrow message="Missing client certificate file for TLS authentication" />
+    </cfif>
+    <cfif structKeyExists(arguments.custom, "authenticationTls")
+            AND (NOT fileExists(arguments.custom.authenticationTlsCertFile))>
+      <cfthrow message="Cannot find client certificate file for TLS authentication (#arguments.custom.authenticationTlsCertFile#)" />
+    </cfif>
+
+    <!--- Check file path to client private key if TLS authentication --->
+    <cfif structKeyExists(arguments.custom, "authenticationTls")
+            AND (len(trim(arguments.custom.authenticationTlsKeyFile)) eq 0)>
+      <cfthrow message="Missing client private key file for TLS authentication" />
+    </cfif>
+    <cfif structKeyExists(arguments.custom, "authenticationTls")
+            AND (NOT fileExists(arguments.custom.authenticationTlsKeyFile))>
+      <cfthrow message="Cannot find client private key file for TLS authentication (#arguments.custom.authenticationTlsKeyFile#)" />
     </cfif>
   </cffunction>
 
