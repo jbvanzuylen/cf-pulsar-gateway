@@ -37,6 +37,7 @@
       <outputDirectory>./lib</outputDirectory>
       <scope>runtime</scope>
       <includes>
+        <include>org.lz4:lz4-java</include>
         <include>org.apache.pulsar:protobuf-shaded</include>
         <include>org.apache.pulsar:pulsar-client</include>
         <include>org.apache.pulsar:pulsar-client-schema</include>
