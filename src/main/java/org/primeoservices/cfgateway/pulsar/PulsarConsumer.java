@@ -17,6 +17,7 @@ package org.primeoservices.cfgateway.pulsar;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.UUID;
 import java.util.concurrent.TimeUnit;
 
 import org.apache.pulsar.client.api.Consumer;
@@ -63,7 +64,7 @@ public class PulsarConsumer extends PulsarExchanger implements MessageListener<b
   {
     final PulsarConfiguration config = this.getGateway().getConfiguration();
     builder.topic(config.getTopic());
-    builder.consumerName(this.getGateway().getId());
+    builder.consumerName(this.getGateway().getId() + "$" + UUID.randomUUID().toString().substring(0, 5));
     builder.subscriptionName(config.getSubscriptionName());
     builder.subscriptionType(config.getSubscriptionType());
     builder.ackTimeout(config.getAckTimeout(), TimeUnit.SECONDS);
