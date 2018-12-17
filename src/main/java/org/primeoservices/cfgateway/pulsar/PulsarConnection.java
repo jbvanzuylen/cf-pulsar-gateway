@@ -17,6 +17,8 @@ public class PulsarConnection
 
   private static final String URI_SCHEME_TLS = "pulsar+ssl";
 
+  private static final int DEFAULT_NUMBER_LISTENER_THREADS = 30;
+
   private static Map<String, PulsarConnection> INSTANCES = new HashMap<String, PulsarConnection>();
 
   private ClientBuilder builder;
@@ -31,6 +33,7 @@ public class PulsarConnection
     this.builder.serviceUrl(buildServiceUrl(config));
     this.builder.tlsTrustCertsFilePath(config.geTlsTrustCertsFilePath());
     this.builder.authentication(config.getAuthentication());
+    this.builder.listenerThreads(DEFAULT_NUMBER_LISTENER_THREADS);
   }
 
   public synchronized Producer<byte[]> newProducer(final PulsarProducer producer) throws PulsarClientException
