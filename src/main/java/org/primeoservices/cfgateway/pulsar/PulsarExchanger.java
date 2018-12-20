@@ -15,6 +15,8 @@
  */
 package org.primeoservices.cfgateway.pulsar;
 
+import java.nio.charset.Charset;
+
 import org.apache.pulsar.client.api.PulsarClientException;
 
 /**
@@ -24,6 +26,8 @@ import org.apache.pulsar.client.api.PulsarClientException;
  */
 public abstract class PulsarExchanger
 {
+  protected static final Charset ENCODING_CHARSET = Charset.forName("UTF-8");
+
   private PulsarGateway gateway;
 
   private Logger log;

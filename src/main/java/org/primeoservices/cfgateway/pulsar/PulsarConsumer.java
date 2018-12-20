@@ -100,7 +100,7 @@ public class PulsarConsumer extends PulsarExchanger implements MessageListener<b
       final Map<String, Object> data = new HashMap<String, Object>();
       data.put("callback", new Callback(message.getMessageId()));
       data.put("properties", message.getProperties());
-      data.put("message", new String(message.getData()));
+      data.put("message", new String(message.getData(), ENCODING_CHARSET));
       this.getGateway().handleMessage(data);
     }
     catch (Throwable t)

@@ -96,7 +96,7 @@ public class PulsarProducer extends PulsarExchanger
     final TypedMessageBuilder<byte[]> builder = this.producer.newMessage();
     final Object properties = data.get(PROPERTIES_KEY);
     PulsarUtils.setProperties(builder, (Map<?, ?>) properties);
-    builder.value(((String) message).getBytes());
+    builder.value(((String) message).getBytes(ENCODING_CHARSET));
     builder.send();
   }
 }
