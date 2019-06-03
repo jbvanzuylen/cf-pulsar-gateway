@@ -38,9 +38,11 @@
       <scope>runtime</scope>
       <includes>
         <include>org.lz4:lz4-java</include>
+        <include>org.bouncycastle:bcprov-jdk15on</include>
+        <include>org.bouncycastle:bcpkix-jdk15on</include>
         <include>org.apache.pulsar:protobuf-shaded</include>
+        <include>org.apache.pulsar:pulsar-client-api</include>
         <include>org.apache.pulsar:pulsar-client</include>
-        <include>org.apache.pulsar:pulsar-client-schema</include>
       </includes>
     </dependencySet>
   </dependencySets>
