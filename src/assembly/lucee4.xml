@@ -37,7 +37,7 @@
       <outputDirectory>./lib</outputDirectory>
       <scope>runtime</scope>
       <includes>
-        <include>org.lz4:lz4-java</include>
+        <include>io.airlift:aircompressor</include>
         <include>org.bouncycastle:bcprov-jdk15on</include>
         <include>org.bouncycastle:bcpkix-jdk15on</include>
         <include>org.apache.pulsar:protobuf-shaded</include>
