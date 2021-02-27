@@ -6,7 +6,7 @@ __[Apache Pulsar](https://pulsar.apache.org) Gateways for ColdFusion__
 
 ### Lucee 4
 
-Download the latest version [here](https://github.com/jbvanzuylen/cf-pulsar-gateway/releases/download/v1.0.0/cf-pulsar-gateway-lucee4-ext.zip)
+Download the latest version [here](https://github.com/jbvanzuylen/cf-pulsar-gateway/releases/download/v1.1.0/cf-pulsar-gateway-lucee4-ext.zip)
 
 __Install as an extension__
 
